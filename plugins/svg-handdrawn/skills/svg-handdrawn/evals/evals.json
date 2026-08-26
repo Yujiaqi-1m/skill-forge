@@ -1,0 +1,32 @@
+{
+  "skill_name": "svg-handdrawn",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我画一张发布流程图：工程师把功能合入 main 分支，CI 自动跑构建和测试，全部通过后打出镜像并部署到预发环境，QA 在预发验收，验收通过由负责人点击上线按钮发布到生产；任何一步失败都会打 Slack 通知值班同学处理。",
+      "expected_output": "Hand-drawn SVG in Chinese with a left-to-right main path (merge → CI build/test → image → staging → QA → release button → production), a failure branch from CI/QA to a Slack notification node rendered with dashed gray connector(s), sketch filter on shapes but zero filter attributes on connectors, Ma Shan Zheng for Chinese text and .label-en for terms like main/CI/Slack, every connector ending in a marker, 16:9 default canvas, plus a rasterized PNG that passes visual inspection.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Draw a diagram of our new-hire onboarding: IT provisions the laptop, then accounts get created across email/chat/repo. The hire completes a security training module; if they fail the quiz they retake it. After training they meet their buddy for a first-week check-in, and once the manager signs off, onboarding is done.",
+      "prompt_note": "English-only diagram; contains a retake feedback loop.",
+      "expected_output": "English hand-drawn SVG using the Comic Sans MS stack, a visible feedback loop from the quiz-failure branch back into the training module drawn as a dashed path wrapping outside the main flow, decision diamond for pass/fail, arrows land on target center axes with no filter on any connector, labels offset from their lines.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "画个 4:3 的图，把我们数据平台的链路画出来：埋点 SDK 上报到网关，网关做清洗后写入 Kafka，Flink 作业消费 Kafka 做实时聚合，结果分两路，一路进 ClickHouse 供看板查询，一路落 OSS 给离线训练用。",
+      "prompt_note": "Explicit 4:3 ratio + parallel fork.",
+      "expected_output": "viewBox 0 0 1200 900 (4:3), layout adapted to the squarer frame, one fork from the Flink node into two parallel targets (ClickHouse and OSS) each with its own visible arrow and marker, per-stage color themes from the cookbook palettes, hand-drawn styling per skill rules.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "帮我把我们部门的组织架构画出来，从 CTO 到下面三个团队，每个团队下面还有组长和成员，层次比较深，用竖版 A4。",
+      "prompt_note": "Tall hierarchy; verifies ratio-driven vertical layout.",
+      "expected_output": "A4 portrait viewBox (0 0 1000 1414) with a strictly top-to-bottom tree, at most 2-3 nodes per row, connector lines without filters landing on each child's top edge center, containers sized after children with padding, no text overflow, PNG passes visual inspection.",
+      "files": []
+    }
+  ]
+}

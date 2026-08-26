@@ -1,0 +1,17 @@
+{
+  "name": "skill-forge",
+  "description": "Personal forge of Claude Code skills: distilled, reusable workflows packaged as one-plugin-per-skill",
+  "owner": {
+    "name": "Yujiaqi-1m",
+    "url": "https://github.com/Yujiaqi-1m"
+  },
+  "plugins": [
+    {
+      "name": "svg-handdrawn",
+      "source": "./plugins/svg-handdrawn",
+      "description": "Hand-drawn style SVG flowcharts and diagrams from plain-language descriptions",
+      "category": "diagrams",
+      "tags": ["svg", "diagram", "flowchart", "hand-drawn"]
+    }
+  ]
+}
