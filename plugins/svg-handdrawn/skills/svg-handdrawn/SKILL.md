@@ -124,15 +124,30 @@ A missing arrow found here costs one edit; found by the user, it costs trust.
 ## Step 5: Rasterize and inspect
 
 Never hand over an SVG you have not looked at. Detect the first available
-rasterizer and convert:
+rasterizer and convert (full command reference and per-tool caveats in
+cookbook §8):
 
 ```bash
-rsvg-convert diagram.svg -o diagram.png                 # preferred
-# fallback (macOS built-in) — writes ./diagram.svg.png:
-qlmanage -t -s 2000 -o . diagram.svg
-# fallback (if installed):
+# 1st choice — exact SVG rendering
+rsvg-convert --background-color='#ffffff' diagram.svg -o diagram.png
+
+# 2nd choice — Chrome headless; window-size MUST equal the SVG width/height
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --hide-scrollbars \
+  --screenshot=diagram.png --window-size=1600,900 \
+  --default-background-color=FFFFFFFF "file://$PWD/diagram.svg"
+
+# 3rd choice — if installed
 inkscape diagram.svg --export-type=png --export-filename=diagram.png
+
+# last resort — macOS built-in, correct aspect but DROPS the sketch filter
+# (edges render straight; still validates layout, arrows, and text)
+sips -s format png diagram.svg --out diagram.png
 ```
+
+**Never use `qlmanage`**: it ignores the SVG's aspect ratio and emits a
+square canvas (`-s 1600` on a 1600×900 SVG yields 1600×1600 with the content
+misplaced) — half the diagram appears missing.
 
 Then use the Read tool on the PNG and judge:
 

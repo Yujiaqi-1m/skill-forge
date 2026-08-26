@@ -1,6 +1,6 @@
 {
   "name": "svg-handdrawn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Hand-drawn style SVG flowcharts and diagrams from plain-language descriptions",
   "author": {
     "name": "Yujiaqi-1m",
@@ -8,5 +8,11 @@
   },
   "license": "MIT",
   "repository": "https://github.com/Yujiaqi-1m/skill-forge",
-  "keywords": ["svg", "diagram", "flowchart", "hand-drawn", "visualization"]
+  "keywords": [
+    "svg",
+    "diagram",
+    "flowchart",
+    "hand-drawn",
+    "visualization"
+  ]
 }

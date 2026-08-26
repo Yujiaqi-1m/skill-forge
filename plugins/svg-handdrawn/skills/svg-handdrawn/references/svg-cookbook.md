@@ -160,19 +160,39 @@ or radial.
 
 ## §8 Rasterizers (for visual self-check)
 
-Try in order; the first one that exists on the machine wins:
+Try in order; the first one that exists on the machine wins. Fidelity was
+pixel-verified (feDisplacementMap wobble, hatch patterns, CJK text, aspect
+ratio) — respect the caveats.
+
+| # | Tool | Aspect | Sketch filter | Hatch | CJK text | Caveat |
+|---|---|---|---|---|---|---|
+| 1 | `rsvg-convert` | ✔ | ✔ | ✔ | ✔ | none — install it if missing (`brew install librsvg` / `apt install librsvg2-bin`) |
+| 2 | Chrome headless | ✔ | ✔ | ✔ | ✔ | `--window-size` must equal the SVG's `width`/`height` |
+| 3 | `inkscape` | ✔ | ✔ | ✔ | ✔ | only where installed |
+| 4 | `sips` (macOS) | ✔ | **✘ dropped** | ✔ | ✔ (system font, not the webfont) | layout/arrow/text check only — edges render straight |
 
 ```bash
-# 1. librsvg — preferred, exact SVG 1.1 rendering
-rsvg-convert diagram.svg -o diagram.png
-# install: brew install librsvg   |   apt install librsvg2-bin
+# 1. librsvg — preferred; white background keeps the PNG readable anywhere
+rsvg-convert --background-color='#ffffff' diagram.svg -o diagram.png
 
-# 2. macOS built-in QuickLook (writes ./diagram.svg.png, width capped at -s)
-qlmanage -t -s 2000 -o . diagram.svg
+# 2. Chrome headless — substitute the SVG's real width,height
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --hide-scrollbars \
+  --screenshot=diagram.png --window-size=1600,900 \
+  --default-background-color=FFFFFFFF "file://$PWD/diagram.svg"
+# Linux Chrome lives at /usr/bin/google-chrome or chromium with same flags
 
-# 3. Inkscape, if present
+# 3. Inkscape
 inkscape diagram.svg --export-type=png --export-filename=diagram.png
+
+# 4. sips — macOS built-in; renders geometry but silently drops SVG filters
+sips -s format png diagram.svg --out diagram.png
 ```
 
-If none is available, skip the visual pass, lean on the static audit, and tell
-the user which package to install.
+**Do not use `qlmanage`.** It is a thumbnailer, not a renderer: `-s N` forces
+a square N×N canvas regardless of the SVG's aspect ratio, so a 1600×900
+diagram comes back 1600×1600 with content shifted or visually cut in half.
+
+If none of the four is available (headless Linux without any of the above),
+skip the visual pass, lean on the static audit, and tell the user which
+package to install.
