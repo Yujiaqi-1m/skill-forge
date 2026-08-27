@@ -9,6 +9,8 @@ description: >
   "画个流程图", "帮我可视化一下", "draw a diagram", "visualize this process",
   "make a flowchart showing how X works", or describes a workflow/system and
   wants it turned into a picture.
+license: MIT
+compatibility: "Agent Skills standard; tested with Claude Code, OpenAI Codex CLI, and pi"
 ---
 
 # Hand-Drawn SVG Diagrams
@@ -149,7 +151,7 @@ sips -s format png diagram.svg --out diagram.png
 square canvas (`-s 1600` on a 1600×900 SVG yields 1600×1600 with the content
 misplaced) — half the diagram appears missing.
 
-Then use the Read tool on the PNG and judge:
+Then view the rendered PNG with your image-reading tool and judge:
 
 - **Layout** — no overlapping elements, no clipped or escaping text, no cramped
   or wasted regions
