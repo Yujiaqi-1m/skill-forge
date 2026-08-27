@@ -1,0 +1,48 @@
+---
+name: {{NAME}}
+description: >
+  {{DESCRIPTION}}. Trigger when the user says "中文触发词",
+  "english trigger phrase", ... Finish with the boundary — what this skill
+  deliberately does NOT do. This description is the router: it is the only
+  part permanently in the agent's context, so front-load the capability and
+  the trigger words.
+license: MIT
+compatibility: "Agent Skills standard; tested with Claude Code, OpenAI Codex CLI, and pi"
+---
+
+# {{NAME}}
+
+One paragraph: what this skill does and the quality bar every output must
+clear before delivery.
+
+## Workflow
+
+1. **Decompose** — parse the request into its essential parts; ask before
+   building if the structure is ambiguous.
+2. **Build** — produce the artifact following the rules below.
+3. **Verify** — check your own output with a tool before delivering (see
+   Verification).
+4. **Deliver** — report file paths / results; never overwrite an existing
+   file, version it instead.
+
+## Rules
+
+- **Encode decisions, not vibes**: exact values, commands, and defaults;
+  state the why behind each rule (rules come from observed failures).
+- Keep this file under 500 lines; push copy-ready detail (snippets,
+  palettes, tables) into [references/cookbook.md](references/cookbook.md)
+  and cite it as "cookbook §N".
+
+## Verification
+
+<!-- MANDATORY: the skill must inspect its own output with a tool
+     (render-and-read, test-run, dry-run) before delivering. Phrase tool
+     use agent-neutrally — "view the rendered file with your image-reading
+     tool" — never a harness-specific tool name. If verification is
+     impossible on this machine, say so explicitly instead of skipping
+     silently. -->
+
+## Recap
+
+1. Rule one worth repeating.
+2. Rule two worth repeating.
