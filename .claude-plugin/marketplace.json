@@ -2,7 +2,7 @@
   "name": "skill-forge",
   "description": "Personal forge of Claude Code skills: distilled, reusable workflows packaged as one-plugin-per-skill",
   "owner": {
-    "name": "Yujiaqi-1m",
+    "name": "Yujiaqi",
     "url": "https://github.com/Yujiaqi-1m"
   },
   "plugins": [
