@@ -1,3 +1,5 @@
 .claude
 .DS_Store
-# NOTE: .agents/skills symlinks ARE committed on purpose (Codex/pi discovery).
+.pi
+# NOTE: .agents/skills symlinks ARE committed on purpose (Codex discovery);
+# pi ignores symlinks (verified v0.80.6) and installs copies at user scope.
