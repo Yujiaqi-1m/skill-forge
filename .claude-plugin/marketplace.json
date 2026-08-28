@@ -11,7 +11,24 @@
       "source": "./plugins/svg-handdrawn",
       "description": "Hand-drawn style SVG flowcharts and diagrams from plain-language descriptions",
       "category": "diagrams",
-      "tags": ["svg", "diagram", "flowchart", "hand-drawn"]
+      "tags": [
+        "svg",
+        "diagram",
+        "flowchart",
+        "hand-drawn"
+      ]
+    },
+    {
+      "name": "task-scheduler",
+      "source": "./plugins/task-scheduler",
+      "description": "Scheduled, resumable task execution with a checkpointed journal",
+      "category": "automation",
+      "tags": [
+        "schedule",
+        "tasks",
+        "resume",
+        "checkpoint"
+      ]
     }
   ]
 }

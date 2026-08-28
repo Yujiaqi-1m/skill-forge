@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "id": "20260826-093012-docs-migration",
+  "title": "Migrate docs pages into src/content/docs with the new link layout",
+  "status": "active",
+  "created_at": "2026-08-26T09:30:12+08:00",
+  "updated_at": "2026-08-27T09:12:40+08:00",
+  "workdir": "/Users/dev/astro-docs",
+  "schedule": {
+    "kind": "multi-step",
+    "fire_at": "2026-08-27T14:00:00+08:00",
+    "advance_every": "4h",
+    "repeat": null
+  },
+  "requirements": [
+    "Move all 3 pages into src/content/docs/",
+    "Keep frontmatter intact",
+    "Internal links use the new /<slug>/ layout, not the old /docs/<slug>/ prefix"
+  ],
+  "acceptance": [
+    "No internal link with the old /docs/<slug>/ prefix remains anywhere under src/content/docs/"
+  ],
+  "plan": [
+    { "n": 1, "title": "Scaffold the src/content/docs structure", "status": "done" },
+    { "n": 2, "title": "Copy the 3 pages, preserving frontmatter", "status": "done" },
+    { "n": 3, "title": "Rewrite internal links from /docs/<slug>/ to /<slug>/", "status": "pending" },
+    { "n": 4, "title": "Final sweep: verify no old-style links remain", "status": "pending" }
+  ],
+  "journal": [
+    {
+      "ts": "2026-08-26T09:35:02+08:00",
+      "step": 1,
+      "event": "done",
+      "msg": "created src/content/docs/ and the minimal page template"
+    },
+    {
+      "ts": "2026-08-27T09:12:40+08:00",
+      "step": 2,
+      "event": "done",
+      "msg": "3/3 pages copied; frontmatter verified; session died before step 3"
+    }
+  ],
+  "deliverables": [],
+  "completed_at": null,
+  "aborted_reason": null
+}

@@ -1,5 +1,9 @@
 .claude
 .DS_Store
 .pi
+# task-scheduler runtime state (records are per-machine resume journals)
+.tasks/
+# skill-creator eval workspace (local QA artifacts: runs, sandboxes, viewer)
+task-scheduler-workspace/
 # NOTE: .agents/skills symlinks ARE committed on purpose (Codex discovery);
 # pi ignores symlinks (verified v0.80.6) and installs copies at user scope.

@@ -10,6 +10,7 @@ is one plugin, versioned and installable on its own.
 | Skill | What it does |
 |---|---|
 | [`svg-handdrawn`](plugins/svg-handdrawn/) | Hand-drawn style SVG flowcharts & diagrams from plain-language descriptions (CN/EN), with aspect-ratio control and a built-in render-and-inspect verification loop. |
+| [`task-scheduler`](plugins/task-scheduler/) | Delayed & multi-step tasks on a schedule with crash-safe resume: task records under `.tasks/`, one-shot triggers, checkpointed journal — an interrupted run continues instead of restarting. |
 
 Example output (release pipeline, eval case 1):
 

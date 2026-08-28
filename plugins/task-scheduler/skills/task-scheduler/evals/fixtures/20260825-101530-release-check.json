@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "id": "20260825-101530-release-check",
+  "title": "Verify release branch before tagging v2.4.0",
+  "status": "active",
+  "created_at": "2026-08-25T10:15:30+08:00",
+  "updated_at": "2026-08-25T18:41:02+08:00",
+  "workdir": "/Users/dev/pkg",
+  "schedule": {
+    "kind": "one-shot",
+    "fire_at": "2026-08-25T18:00:00+08:00",
+    "advance_every": null,
+    "repeat": null
+  },
+  "requirements": [
+    "Bump version in pyproject.toml to 2.4.0",
+    "Changelog entry for the 3 merged PRs",
+    "Build the sdist and wheel into dist/"
+  ],
+  "acceptance": [
+    "A git tag v2.4.0 exists and points at the current commit",
+    "dist/pkg-2.4.0.tar.gz and dist/pkg-2.4.0-py3-none-any.whl both exist"
+  ],
+  "plan": [
+    { "n": 1, "title": "Bump version to 2.4.0", "status": "done" },
+    { "n": 2, "title": "Write changelog entry", "status": "done" },
+    { "n": 3, "title": "Build sdist and wheel", "status": "done" }
+  ],
+  "journal": [
+    {
+      "ts": "2026-08-25T18:00:04+08:00",
+      "step": 1,
+      "event": "done",
+      "msg": "version bumped in pyproject.toml and pkg/__init__.py"
+    },
+    {
+      "ts": "2026-08-25T18:12:31+08:00",
+      "step": 2,
+      "event": "done",
+      "msg": "changelog entry added for #101 #104 #107"
+    },
+    {
+      "ts": "2026-08-25T18:41:02+08:00",
+      "step": 3,
+      "event": "done",
+      "msg": "built dist/pkg-2.4.0.tar.gz and dist/pkg-2.4.0-py3-none-any.whl"
+    }
+  ],
+  "deliverables": [
+    "dist/pkg-2.4.0.tar.gz",
+    "dist/pkg-2.4.0-py3-none-any.whl"
+  ],
+  "completed_at": null,
+  "aborted_reason": null
+}
