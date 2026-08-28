@@ -7,3 +7,7 @@
 task-scheduler-workspace/
 # NOTE: .agents/skills symlinks ARE committed on purpose (Codex discovery);
 # pi ignores symlinks (verified v0.80.6) and installs copies at user scope.
+
+# teaching-video Vite project build artifacts
+node_modules/
+dist/

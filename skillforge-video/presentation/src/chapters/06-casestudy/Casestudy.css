@@ -1,0 +1,261 @@
+/* Chapter 6 · casestudy — .cs- 前缀,颜色/字体全走主题 token */
+
+.cs-scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 48px;
+}
+
+/* 章级字号下限:label-mono 默认 12px,1080p 视频远观不可读 */
+.cs-scene .label-mono { font-size: 24px; letter-spacing: 0.08em; }
+.cs-scene .kicker { font-size: 24px; }
+
+.cs-h2 { font-size: 80px; font-weight: 600; line-height: 1.15; color: var(--text); }
+.cs-hero { font-size: 100px; font-weight: 600; line-height: 1.1; color: var(--text); }
+.cs-em { color: var(--accent); }
+
+/* ── step 0 · 外部仓库 → 蒸馏 → skill-forge ─────────────── */
+.cs-s0 { align-items: center; }
+.cs-s0-row { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.cs-repo {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+  width: 620px; padding: 34px 44px;
+  animation: rise-in 700ms ease-out both;
+}
+.cs-repo-in { width: 640px; }
+.cs-repo-owner { color: var(--text-mute); }
+.cs-repo-name { font-size: 36px; color: var(--text); }
+.cs-repo-meta { color: var(--text-faint); }
+.cs-repo-size { font-size: 110px; color: var(--text); margin-top: 6px; }
+.cs-repo-unit { font-size: 44px; color: var(--accent); margin-left: 12px; }
+.cs-s0-flow { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 280px; }
+.cs-s0-flow-label { color: var(--accent); opacity: 0; animation: rise-in 500ms ease-out 1750ms both; }
+.cs-s0-flow svg { width: 260px; height: 60px; overflow: visible; }
+.cs-flow-line {
+  fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0.85;
+  stroke-dasharray: 220; stroke-dashoffset: 220;
+  animation: cs-draw 600ms ease-out forwards;
+}
+.cs-flow-head {
+  fill: none; stroke: var(--accent); stroke-width: 2.5; opacity: 0.85;
+  stroke-dasharray: 100; stroke-dashoffset: 100;
+  animation: cs-draw 400ms ease-out forwards;
+}
+.cs-s0-sub { display: flex; align-items: center; color: var(--text-mute); opacity: 0; animation: rise-in 600ms ease-out both; }
+
+/* ── step 1 · 三区取舍板:留 / 精选 / 删 ─────────────────── */
+.cs-s1 { align-items: center; gap: 56px; }
+.cs-s1-board { display: flex; gap: 44px; }
+.cs-zone {
+  display: flex; flex-direction: column; gap: 26px;
+  width: 500px; padding: 34px 38px;
+  animation: rise-in 700ms ease-out both;
+}
+.cs-zone-tag { color: var(--text-mute); }
+.cs-keep { display: flex; flex-direction: column; gap: 10px; }
+.cs-keep-item { font-size: 26px; color: var(--text-2); }
+.cs-keep-sub { font-size: 24px; color: var(--text-faint); margin-bottom: 14px; }
+.cs-sel-hero { display: flex; align-items: baseline; gap: 28px; }
+.cs-sel-from { font-size: 84px; color: var(--text-faint); }
+.cs-sel-to { font-size: 110px; color: var(--accent); }
+.cs-sel-arrow {
+  position: relative; width: 90px; height: 8px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  animation: cs-grow 700ms ease-out 200ms both; align-self: center;
+}
+.cs-sel-arrow::after {
+  content: ""; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+  border-left: 20px solid var(--accent);
+  border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+}
+.cs-sel-note { font-size: 26px; color: var(--text-2); }
+.cs-drop { display: flex; flex-direction: column; gap: 22px; }
+.cs-drop-item { position: relative; font-size: 26px; color: var(--text-faint); width: fit-content; padding: 0 6px; }
+.cs-strike {
+  position: absolute; left: 0; right: 0; top: 50%; height: 2.5px; margin-top: -1px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  animation: cs-grow 600ms ease-out both;
+}
+
+/* ── step 2 · frontmatter 前后对比 ───────────────────────── */
+.cs-s2 { align-items: center; gap: 52px; }
+.cs-s2-row { display: flex; align-items: center; gap: 36px; }
+.cs-fm { display: flex; flex-direction: column; gap: 24px; padding: 34px 40px; animation: rise-in 700ms ease-out both; }
+.cs-fm-old { width: 640px; opacity: 0.85; }
+.cs-fm-new { width: 780px; }
+.cs-fm-tag { color: var(--text-faint); }
+.cs-fm-tag-new { color: var(--accent); }
+.cs-fm-code { display: flex; flex-direction: column; gap: 18px; font-size: 26px; }
+.cs-fm-dim { color: var(--text-faint); }
+.cs-fm-weak { color: var(--text-mute); }
+.cs-fm-verdict { color: var(--text-faint); }
+.cs-s2-arrow { width: 120px; height: 60px; overflow: visible; flex: none; }
+.cs-route { display: flex; align-items: baseline; gap: 24px; opacity: 0; animation: rise-in 550ms ease-out both; }
+.cs-route-k { color: var(--accent); }
+.cs-route-v { color: var(--text-2); font-size: 26px; }
+.cs-chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.cs-chip {
+  font-size: 24px; color: var(--text-2);
+  padding: 8px 18px; border: 1px solid var(--rule); border-radius: var(--r-card);
+  background: var(--surface-3);
+}
+
+/* ── step 3 · 终端冒烟 + 错误路径拼合 ────────────────────── */
+.cs-s3 { align-items: center; gap: 48px; }
+.cs-s3-row { display: flex; gap: 40px; align-items: stretch; }
+.cs-term { width: 930px; padding: 0; overflow: hidden; animation: rise-in 700ms ease-out both; }
+.cs-term-bar { padding: 18px 28px; border-bottom: 1px solid var(--rule); }
+.cs-term-body { display: flex; flex-direction: column; gap: 12px; padding: 26px 28px 30px; }
+.cs-tl { font-size: 26px; color: var(--text-2); white-space: nowrap; opacity: 0; animation: rise-in 450ms ease-out both; }
+.cs-p { color: var(--accent); margin-right: 14px; }
+.cs-tl-dim { color: var(--text-mute); }
+.cs-tl-err { color: var(--accent); }
+.cs-path {
+  display: flex; flex-direction: column; justify-content: center; gap: 24px;
+  width: 660px; padding: 30px 34px;
+  animation: rise-in 700ms ease-out both;
+}
+.cs-path-expr { display: flex; flex-direction: column; gap: 8px; font-size: 26px; color: var(--text-2); }
+.cs-pl { opacity: 0; animation: rise-in 450ms ease-out both; }
+.cs-pk { color: var(--text-mute); margin-right: 18px; }
+.cs-path-wrong {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 24px; padding: 16px 14px;
+  background: var(--accent-soft); border-radius: var(--r-card);
+}
+.cs-pw-a, .cs-pw-b { display: inline-block; opacity: 0; }
+.cs-pw-a { color: var(--text-2); animation: cs-fuse-a 700ms cubic-bezier(0.19, 1, 0.22, 1) both; }
+.cs-pw-b { color: var(--accent); animation: cs-fuse-b 700ms cubic-bezier(0.19, 1, 0.22, 1) both; }
+.cs-x { position: relative; width: 46px; height: 46px; flex: none; opacity: 0; animation: scale-in 450ms ease-out both; }
+.cs-x::before, .cs-x::after {
+  content: ""; position: absolute; left: 50%; top: 0; width: 5px; height: 46px;
+  background: var(--accent);
+}
+.cs-x::before { transform: translateX(-50%) rotate(45deg); }
+.cs-x::after { transform: translateX(-50%) rotate(-45deg); }
+.cs-path-verdict { color: var(--accent); opacity: 0; animation: rise-in 500ms ease-out both; }
+.cs-path-note { font-size: 24px; color: var(--text-faint); opacity: 0; animation: rise-in 500ms ease-out both; }
+
+/* ── step 4 · 证据条:加固代码 → 验证 → 提交 ─────────────── */
+.cs-s4 { align-items: center; }
+.cs-s4-evi { display: flex; flex-direction: column; align-items: center; gap: 36px; }
+.cs-fix { position: relative; display: flex; flex-direction: column; gap: 20px; padding: 30px 40px; width: 1080px; animation: rise-in 700ms ease-out both; }
+.cs-fix-tag { color: var(--text-mute); }
+.cs-stamp {
+  position: absolute; right: -30px; top: -34px;
+  display: flex; align-items: center; justify-content: center;
+  width: 168px; height: 168px; border-radius: 50%;
+  border: 3px solid var(--accent); color: var(--accent);
+  font-size: 30px; letter-spacing: 0.05em;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 7px var(--surface-2), inset 0 0 0 9px var(--accent);
+  opacity: 0; transform: rotate(-12deg) scale(1.6);
+  animation: cs-stamp 500ms cubic-bezier(0.34, 1.2, 0.5, 1) both;
+}
+.cs-fix-code { display: flex; flex-direction: column; gap: 12px; font-size: 26px; color: var(--text-2); }
+.cs-check { display: flex; align-items: center; gap: 36px; opacity: 0; animation: rise-in 600ms ease-out both; }
+.cs-ok { font-size: 28px; color: var(--text-2); }
+.cs-ok-mark { color: var(--accent); }
+.cs-okv { font-size: 28px; color: var(--accent); }
+.cs-commit { display: flex; align-items: center; font-size: 28px; color: var(--text-mute); opacity: 0; animation: rise-in 600ms ease-out both; }
+
+/* ── step 5 · 蒸馏金句:散点汇聚成流 ─────────────────────── */
+.cs-s5 { align-items: center; gap: 40px; }
+.cs-s5-visual { width: 1240px; height: 280px; }
+.cs-s5-visual svg { width: 100%; height: 100%; overflow: visible; }
+.cs-s5-dot { fill: var(--text-faint); opacity: 0; animation: cs-distill 1100ms cubic-bezier(0.6, 0, 0.2, 1) both; }
+.cs-s5-bar {
+  stroke: var(--accent); stroke-width: 7; stroke-linecap: round;
+  stroke-dasharray: 210; stroke-dashoffset: 210;
+  animation: cs-draw 600ms ease-out 4400ms forwards;
+}
+.cs-s5-h { display: flex; align-items: center; justify-content: center; }
+.cs-hero-arrow {
+  position: relative; width: 0; height: 9px; background: var(--accent);
+  margin: 0 32px; align-self: center;
+  animation: cs-arrow-w 700ms cubic-bezier(0.19, 1, 0.22, 1) 5100ms both;
+}
+.cs-hero-arrow::after {
+  content: ""; position: absolute; right: -24px; top: 50%; transform: translateY(-50%);
+  border-left: 24px solid var(--accent);
+  border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+}
+.cs-s5-badges { display: flex; gap: 28px; }
+.cs-s5-badge {
+  color: var(--text-mute); padding: 10px 26px;
+  border: 1px solid var(--rule); border-radius: var(--r-card);
+  background: var(--surface-2);
+  opacity: 0; animation: rise-in 600ms ease-out both;
+}
+
+/* ── step 6 · 收束三联 ──────────────────────────────────── */
+.cs-s6 { align-items: center; }
+.cs-s6-row { display: flex; gap: 44px; }
+.cs-t {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+  width: 480px; height: 360px;
+  animation: rise-in 650ms ease-out both;
+}
+.cs-t1 { font-size: 100px; color: var(--accent); }
+.cs-agents { color: var(--text-mute); }
+.cs-tt { font-size: 44px; color: var(--text); }
+.cs-ci { width: 84px; height: 84px; overflow: visible; }
+.cs-ci-path {
+  fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 80; stroke-dashoffset: 80;
+  animation: cs-draw 600ms ease-out 3400ms forwards;
+}
+
+/* ── step 7 · CTA:搜索 → fork → 评论区 ─────────────────── */
+.cs-s7 { align-items: center; gap: 34px; }
+.cs-search {
+  display: flex; align-items: center; gap: 32px;
+  width: 900px; padding: 26px 40px;
+  animation: rise-in 600ms ease-out both;
+}
+.cs-search-k { color: var(--text-mute); }
+.cs-search-typed { font-size: 30px; color: var(--text); }
+.cs-type {
+  display: inline-block; overflow: hidden; white-space: nowrap; width: 0; vertical-align: bottom;
+  animation: cs-type 1.4s steps(11, end) 1.2s forwards;
+}
+.cs-caret {
+  display: inline-block; width: 15px; height: 32px; margin-left: 4px;
+  background: var(--accent); vertical-align: middle;
+  animation: caret-blink 1s step-end infinite;
+}
+.cs-hit {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  width: 900px; padding: 28px 40px;
+  animation: pop-in 650ms ease-out both;
+}
+.cs-hit-name { font-size: 34px; color: var(--text); }
+.cs-hit-meta { color: var(--text-faint); }
+.cs-cmd {
+  font-size: 30px; color: var(--text-2);
+  padding: 14px 30px; background: var(--surface-3); border-radius: var(--r-card);
+  opacity: 0; animation: rise-in 550ms ease-out both;
+}
+.cs-fork { font-size: 28px; color: var(--text-mute); opacity: 0; animation: rise-in 550ms ease-out both; }
+.cs-s7-h { margin-top: 20px; }
+.cs-s7-sub { color: var(--text-mute); opacity: 0; animation: rise-in 500ms ease-out both; }
+
+/* ── keyframes(章节私有)────────────────────────────────── */
+@keyframes cs-draw { to { stroke-dashoffset: 0; } }
+@keyframes cs-stamp {
+  from { opacity: 0; transform: rotate(-12deg) scale(1.6); }
+  to { opacity: 1; transform: rotate(-12deg) scale(1); }
+}
+@keyframes cs-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes cs-fuse-a { from { opacity: 0; transform: translateY(-46px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cs-fuse-b { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cs-distill {
+  0% { opacity: 0; transform: translate(0, 0); }
+  25% { opacity: 1; }
+  100% { opacity: 0.9; transform: translate(var(--dx), var(--dy)); }
+}
+@keyframes cs-arrow-w { from { width: 0; } to { width: 130px; } }
+@keyframes cs-type { to { width: 11ch; } }
