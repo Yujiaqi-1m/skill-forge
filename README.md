@@ -11,6 +11,7 @@ is one plugin, versioned and installable on its own.
 |---|---|
 | [`svg-handdrawn`](plugins/svg-handdrawn/) | Hand-drawn style SVG flowcharts & diagrams from plain-language descriptions (CN/EN), with aspect-ratio control and a built-in render-and-inspect verification loop. |
 | [`task-scheduler`](plugins/task-scheduler/) | Delayed & multi-step tasks on a schedule with crash-safe resume: task records under `.tasks/`, one-shot triggers, checkpointed journal — an interrupted run continues instead of restarting. |
+| [`web-video-presentation`](plugins/web-video-presentation/) | Turn an article or narration script into a click-driven 16:9 "looks like video" web presentation (Vite + React + TS): script + outline in one pass, hard alignment checkpoints, per-chapter development with `narrations.ts` as the single source of truth, optional TTS audio and one-take `?auto=1` screen recording. Distilled from [ConardLi/garden-skills](https://github.com/ConardLi/garden-skills) (MIT). |
 
 Example output (release pipeline, eval case 1):
 
