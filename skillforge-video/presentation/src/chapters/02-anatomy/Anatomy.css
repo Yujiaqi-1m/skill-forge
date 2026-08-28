@@ -1,0 +1,110 @@
+/* Chapter 2 · anatomy — .an- 前缀,颜色/字体全走主题 token */
+
+.an-scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 48px;
+}
+
+/* 章级字号下限 */
+.an-scene .label-mono { font-size: 24px; letter-spacing: 0.08em; }
+
+.an-h1 { font-size: 96px; font-weight: 600; line-height: 1.15; color: var(--text); }
+.an-h2 { font-size: 80px; font-weight: 600; line-height: 1.18; color: var(--text); }
+.an-em { color: var(--accent); }
+.an-note-en { font-size: 30px; color: var(--text-mute); letter-spacing: 0.02em; }
+
+/* ── step 0 · 目录树 ────────────────────────────────────── */
+.an-s0 { gap: 56px; }
+.an-tree { font-size: 34px; color: var(--text-2); margin-left: 80px; }
+.an-tree-root { color: var(--text); }
+.an-tree-branches { display: flex; flex-direction: column; gap: 22px; margin-top: 28px; }
+.an-tree-item { display: flex; align-items: center; gap: 18px; animation: rise-in 700ms ease-out both; position: relative; padding-left: 40px; }
+.an-tree-connector { position: absolute; left: 0; top: 50%; width: 28px; height: 2px; background: var(--rule); }
+.an-tree-item::before { content: ""; position: absolute; left: 0; top: -22px; width: 2px; height: 44px; background: var(--rule); }
+.an-tree-item:first-child::before { display: none; }
+.an-tree-hl { color: var(--accent); }
+.an-tree-star { color: var(--accent); margin-left: 24px; }
+
+/* ── step 1 · SKILL.md frontmatter ─────────────────────── */
+.an-s1 { align-items: center; gap: 56px; }
+.an-file { padding: 44px 72px; animation: scale-in 700ms ease-out both; }
+.an-fm { display: flex; flex-direction: column; gap: 20px; font-size: 30px; }
+.an-fm-line { color: var(--text-2); }
+.an-fm-dim { color: var(--text-faint); }
+.an-fm-hl {
+  position: relative; color: var(--text); padding: 6px 18px; margin: 0 -18px;
+  background: var(--accent-soft); border-left: 4px solid var(--accent);
+  animation: an-sweep 800ms ease-out 600ms both;
+}
+.an-s1-h { text-align: center; }
+
+/* ── step 2~5 · 三层塔 ──────────────────────────────────── */
+.an-s2 { gap: 48px; }
+.an-stack { display: flex; flex-direction: column; gap: 20px; }
+.an-layer {
+  display: grid; grid-template-columns: 420px 400px 1fr; align-items: center;
+  padding: 30px 40px; border: 2px solid var(--rule); background: var(--surface);
+  opacity: 0.22;
+}
+.an-layer-dim { opacity: 0.5; }
+.an-layer-pending { opacity: 0.22; }
+.an-layer-active {
+  opacity: 1; border-color: var(--accent); background: var(--surface-2);
+  animation: an-layer-in 800ms ease-out both;
+}
+.an-layer-tag { color: var(--text); }
+.an-layer-note { color: var(--text-mute); }
+.an-layer-sub { color: var(--text-faint); font-size: 26px; }
+.an-s5 { gap: 40px; }
+.an-s5-hero { display: flex; align-items: baseline; gap: 32px; justify-content: center; }
+.an-s5-pre, .an-s5-suf { font-size: 56px; color: var(--text); font-weight: 600; }
+.an-s5-num { font-size: 150px; color: var(--accent); animation: pop-in 800ms ease-out 400ms both; }
+
+/* ── step 6 · 沉底警示 ──────────────────────────────────── */
+.an-s6 { align-items: center; gap: 52px; }
+.an-sink {
+  display: flex; flex-direction: column; gap: 18px; padding: 36px 64px;
+  animation: an-sink 2.2s cubic-bezier(0.35, 0, 0.6, 1) 400ms both;
+}
+.an-sink-name { font-size: 34px; color: var(--text-mute); }
+.an-sink-desc { color: var(--text-faint); }
+.an-s6-h { text-align: center; }
+.an-s6-en { animation: rise-in 700ms ease-out 1500ms both; }
+
+/* ── step 7~9 · 配方三格 ────────────────────────────────── */
+.an-s7 { gap: 52px; }
+.an-recipe { display: flex; gap: 36px; }
+.an-cell {
+  flex: 1; display: flex; flex-direction: column; gap: 18px; align-items: flex-start;
+  padding: 36px 40px; opacity: 0.35; border: 2px solid var(--rule);
+}
+.an-cell-dim { opacity: 0.45; }
+.an-cell-pending { opacity: 0.25; }
+.an-cell-active { opacity: 1; border-color: var(--accent); animation: an-layer-in 800ms ease-out both; }
+.an-cell-k { color: var(--text-faint); }
+.an-cell-active .an-cell-k { color: var(--accent); }
+.an-cell-t { font-size: 44px; color: var(--text); font-weight: 600; }
+.an-cell-e { font-size: 28px; color: var(--text-mute); }
+.an-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.an-chip { padding: 8px 18px; border: 2px solid var(--rule); border-radius: 999px; color: var(--text-2); }
+.an-chip-on { border-color: var(--accent); color: var(--accent); }
+.an-s7-note { display: flex; align-items: center; font-size: 28px; color: var(--text-mute); animation: rise-in 700ms ease-out both; }
+
+/* ── keyframes(章节私有)────────────────────────────────── */
+@keyframes an-sweep {
+  from { background: transparent; border-left-color: transparent; }
+  to { background: var(--accent-soft); border-left-color: var(--accent); }
+}
+@keyframes an-layer-in {
+  from { transform: translateX(-40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes an-sink {
+  0% { transform: translateY(-140px); opacity: 0; }
+  35% { transform: translateY(0); opacity: 1; }
+  75% { transform: translateY(26px); opacity: 0.6; }
+  100% { transform: translateY(90px); opacity: 0.35; filter: saturate(0.4); }
+}
