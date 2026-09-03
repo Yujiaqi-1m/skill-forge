@@ -1,0 +1,13 @@
+{
+  "name": "sf-web-video-presentation",
+  "version": "0.1.1",
+  "description": "Turn articles and scripts into click-driven 16:9 web presentations recordable as cinematic videos; distilled from ConardLi/garden-skills (MIT)",
+  "author": {
+    "name": "Yujiaqi",
+    "url": "https://github.com/Yujiaqi-1m"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ConardLi/garden-skills/tree/main/skills/web-video-presentation",
+  "repository": "https://github.com/Yujiaqi-1m/skill-forge",
+  "keywords": ["video", "presentation", "screencast", "tts", "react"]
+}

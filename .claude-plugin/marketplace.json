@@ -7,17 +7,17 @@
   },
   "plugins": [
     {
-      "name": "scroll-site-clone",
-      "source": "./plugins/scroll-site-clone",
+      "name": "sf-scroll-site-clone",
+      "source": "./plugins/sf-scroll-site-clone",
       "description": "Forensically replicate a website's scroll-driven effects (GSAP/Lenis/Three.js pipelines) into a fresh React+Vite project with behavior-level fidelity: dump the real source, port animation code verbatim, pre-fill ALL content with mock data",
       "category": "general",
       "tags": [
-        "scroll-site-clone"
+        "sf-scroll-site-clone"
       ]
     },
     {
-      "name": "svg-handdrawn",
-      "source": "./plugins/svg-handdrawn",
+      "name": "sf-svg-handdrawn",
+      "source": "./plugins/sf-svg-handdrawn",
       "description": "Hand-drawn style SVG flowcharts and diagrams from plain-language descriptions",
       "category": "diagrams",
       "tags": [
@@ -28,8 +28,8 @@
       ]
     },
     {
-      "name": "task-scheduler",
-      "source": "./plugins/task-scheduler",
+      "name": "sf-task-scheduler",
+      "source": "./plugins/sf-task-scheduler",
       "description": "Scheduled, resumable task execution with a checkpointed journal",
       "category": "automation",
       "tags": [
@@ -40,8 +40,8 @@
       ]
     },
     {
-      "name": "web-video-presentation",
-      "source": "./plugins/web-video-presentation",
+      "name": "sf-web-video-presentation",
+      "source": "./plugins/sf-web-video-presentation",
       "description": "Turn articles and scripts into click-driven 16:9 web presentations recordable as videos, with optional TTS narration",
       "category": "video",
       "tags": [

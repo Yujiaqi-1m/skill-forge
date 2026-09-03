@@ -1,0 +1,40 @@
+{
+  "skill_name": "sf-task-scheduler",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "今天下午 17:30（北京时间）帮我在这个仓库跑一遍完整测试，把失败的用例整理成清单写到 build/failures.md，完成后跟我说一声。现在先别动手，到点再开始。",
+      "prompt_note": "zh one-shot delayed task with absolute time and an explicit stay-quiet instruction; grades the commit phase (intake → record → arm → one-line confirmation). Firing itself is covered by the manual smoke test, not here.",
+      "expected_output": "No clarifying questions needed (time, workdir, deliverable all given); exactly one short Chinese confirmation naming the task id, the natural local fire time (17:30 — no forced offset notation in the reply), and the first step; a .tasks/<id>.json created via the helper with schedule.kind=one-shot, status=active, fire_at stored as 2026-08-27T17:30:00+08:00 (offset in the record, not the reply), populated requirements/acceptance/plan written in the user's language (Chinese), and empty journal; a one-shot trigger registered with the task id embedded in its prompt text; zero work performed before the fire time; no further messages after the confirmation line.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "My scheduled task just fired — it's 14:05 now. Pick up where it left off.",
+      "prompt_note": "en resume-from-checkpoint. Requires staged input: copy evals/fixtures/20260826-093012-docs-migration.json into the workspace .tasks/ and rewrite its workdir to the workspace root before the run. The record has steps 1-2 done with journal entries, steps 3-4 pending, status=active. Grades: continue, don't restart.",
+      "expected_output": "Locates the active task by scanning .tasks/ (the trigger text carries no id); reads the record and journal; identifies step 3 as next-pending; does NOT redo steps 1-2 (verifies their outputs instead); executes step 3 only, in the recorded workdir; appends a timestamped journal entry with a UTC offset via the helper; leaves status=active while steps remain; re-arms the next one-shot per advance_every.",
+      "files": [".tasks/20260826-093012-docs-migration.json"]
+    },
+    {
+      "id": 3,
+      "prompt": "之前那个定时任务现在怎么样了？",
+      "prompt_note": "zh status query on a task whose plan steps are all done but whose status is still active. Requires staged input: copy evals/fixtures/20260825-101530-release-check.json into the workspace .tasks/ and rewrite its workdir to the workspace root. Grades terse reporting + the completion gate.",
+      "expected_output": "Reports progress tersely from the record and journal (id, steps done, deliverables); notices every plan step is done while status=active; runs each acceptance check from the record; on pass, marks status=completed via the helper with completed_at set (offset timestamp) and the record retained, not deleted; replies with a short summary listing deliverables.",
+      "files": [".tasks/20260825-101530-release-check.json"]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我设一个每天早上 9 点跑一次回归测试然后发报告的定时任务。",
+      "prompt_note": "boundary case — recurring/periodic request, explicitly out of scope; grades graceful decline + redirect, not silent refusal and not quiet compliance.",
+      "expected_output": "Declines in one line stating the one-shot/multi-step scope; writes NO .tasks/ file and registers NO recurring trigger; offers the nearest in-scope shape (a single next-morning 9:00 run, re-armed after each run only if the user asks) plus concrete alternatives — the environment's own recurring facility if available, or an OS-level scheduler job per cookbook §6; stays helpful rather than refusing outright.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Sometime this evening — 6pm-ish — draft release notes from everything merged since v1.3.0.",
+      "prompt_note": "en underspecified request (timezone, target file, format, repo scope all open); grades the interview-before-commit behavior.",
+      "expected_output": "Asks 2-4 targeted clarifying questions covering the exact time (timezone handled by session-local default or one targeted question, not interrogation), output path, note format, and the scope of everything merged; creates no record and arms no trigger before the user answers; once confirmed, commits a record whose fire_at is a resolved absolute timestamp with offset and emits a single confirmation line (id, fire time, first step), then stops.",
+      "files": []
+    }
+  ]
+}
