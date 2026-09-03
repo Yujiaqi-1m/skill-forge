@@ -18,6 +18,10 @@ Example output (release pipeline, eval case 1):
 
 ![release-flow example](plugins/svg-handdrawn/examples/release-flow.png)
 
+A fuller demo lives in [`skillforge-video/`](skillforge-video/) — this
+repo's own teaching video ("write once, run in three agents"), built end-to-end
+with `web-video-presentation`.
+
 ## Install
 
 ### Claude Code (marketplace — recommended)
@@ -70,14 +74,28 @@ discovery-path matrix, verified limitations, and design rationale.
 
 ## Usage
 
-Once installed, just ask in Chinese or English:
+Once installed, just ask in Chinese or English — one example per skill:
 
 - 「帮我画个流程图：代码合入 main 后 CI 跑构建和测试，通过后部署预发，QA 验收完再上生产，失败就通知值班」
-- "Visualize our onboarding process as a diagram, A4 portrait"
+  → `svg-handdrawn` renders a hand-sketched SVG (wobbly edges, hatching,
+  handwriting fonts), rasterizes it, visually inspects the result, and
+  iterates until it passes.
+- 「复刻这个网站的滚动效果：\<award-site URL\>」 / "rebuild this landing
+  page's animations"
+  → `scroll-site-clone` dumps the site's real source, ports the animation
+  code verbatim into a fresh React+Vite project, pre-fills all content with
+  mock data, and asserts computed styles numerically before delivering.
+- 「把这篇文章做成视频」 / "make this article into a video"
+  → `web-video-presentation` produces a click-driven 16:9 presentation:
+  script + outline in one pass, per-chapter development, optional TTS
+  audio, one-take `?auto=1` screen recording.
+- 「下午 5 点帮我跑测试，跑完把报告发我」
+  → `task-scheduler` writes a task record under `.tasks/`, arms a one-shot
+  trigger, then executes step by step with a checkpointed journal — an
+  interrupted run resumes instead of restarting.
 
-The skill renders a hand-sketched SVG (wobbly edges, hatching, handwriting
-fonts), rasterizes it, visually inspects the result, and iterates until it
-passes — then reports the SVG + PNG paths without overwriting existing files.
+Every skill verifies its own output before reporting (render-and-read,
+numeric assertions, dry-run) — that's a house rule, see below.
 
 ## Repository layout
 
