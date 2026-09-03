@@ -1,0 +1,12 @@
+{
+  "name": "sf-task-scheduler",
+  "version": "0.1.1",
+  "description": "Scheduled, resumable task execution with a checkpointed journal",
+  "author": {
+    "name": "Yujiaqi",
+    "url": "https://github.com/Yujiaqi-1m"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/Yujiaqi-1m/skill-forge",
+  "keywords": ["sf-task-scheduler"]
+}

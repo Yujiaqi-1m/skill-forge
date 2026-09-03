@@ -7,6 +7,10 @@
 # Creates plugins/<name>/ from templates/skill/, symlinks it into
 # .agents/skills/ (Codex/pi discovery), and registers it in the Claude
 # marketplace manifest. Then run scripts/validate.sh and fill in the TODOs.
+#
+# The `sf-` prefix is the forge's origin mark: installed skills sit next to
+# skills from other sources, so every name carries it. Added automatically
+# when missing.
 
 set -euo pipefail
 
@@ -20,6 +24,10 @@ NAME="$1"
 DESC="${2:-What this skill does and when to use it}"
 
 [[ $NAME =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || die "name '$NAME' must be lowercase a-z0-9 hyphens (Agent Skills standard)"
+if [[ $NAME != sf-* ]]; then
+  echo "note: adding the sf- origin prefix -> $NAME becomes sf-$NAME"
+  NAME="sf-$NAME"
+fi
 [[ ${#NAME} -le 64 ]] || die "name exceeds 64 chars"
 [[ ! -e "$REPO_ROOT/plugins/$NAME" ]] || die "plugins/$NAME already exists"
 

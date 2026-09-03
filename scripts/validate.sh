@@ -77,6 +77,10 @@ check_skill() { # $1: plugin dir name
   local skill_md="$sdir/SKILL.md"
   SKILL_COUNT=$((SKILL_COUNT + 1))
 
+  # 0. sf- origin prefix — installed skills sit next to skills from other
+  #    sources, so every forge name carries it (see README conventions).
+  [[ $name == sf-* ]] || err "$name: missing the sf- origin prefix"
+
   # 1. plugin.json
   local pjson="$pdir/.claude-plugin/plugin.json"
   if [[ ! -f $pjson ]]; then
