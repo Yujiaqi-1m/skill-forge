@@ -1,0 +1,23 @@
+{
+  "name": "scroll-site-clone",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Scroll-interaction clone of <target site> — all content mocked, zero network assets",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.2",
+    "lenis": "^1.3.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.3.5"
+  }
+}

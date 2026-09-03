@@ -1,0 +1,12 @@
+{
+  "name": "scroll-site-clone",
+  "version": "0.1.0",
+  "description": "Forensically replicate a website's scroll-driven effects (GSAP/Lenis/Three.js pipelines) into a fresh React+Vite project with behavior-level fidelity: dump the real source, port animation code verbatim, pre-fill ALL content with mock data",
+  "author": {
+    "name": "Yujiaqi",
+    "url": "https://github.com/Yujiaqi-1m"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/Yujiaqi-1m/skill-forge",
+  "keywords": ["scroll-site-clone"]
+}
