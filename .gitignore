@@ -11,3 +11,5 @@ task-scheduler-workspace/
 # teaching-video Vite project build artifacts
 node_modules/
 dist/
+# teaching-video demo — local-only, removed from git (marketplace clones stay lean)
+skillforge-video/

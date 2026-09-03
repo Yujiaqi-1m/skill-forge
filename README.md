@@ -18,11 +18,6 @@ Example output (release pipeline, eval case 1):
 
 ![release-flow example](plugins/sf-svg-handdrawn/examples/release-flow.png)
 
-A fuller demo lives in [`skillforge-video/`](skillforge-video/) — this
-repo's own teaching video ("write once, run in three agents"), built end-to-end
-with `sf-web-video-presentation`. (Recorded before skills gained the `sf-`
-prefix — the video says the old unprefixed names.)
-
 ## Install
 
 ### Claude Code (marketplace — recommended)
