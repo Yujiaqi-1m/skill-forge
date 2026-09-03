@@ -7,6 +7,15 @@
   },
   "plugins": [
     {
+      "name": "scroll-site-clone",
+      "source": "./plugins/scroll-site-clone",
+      "description": "Forensically replicate a website's scroll-driven effects (GSAP/Lenis/Three.js pipelines) into a fresh React+Vite project with behavior-level fidelity: dump the real source, port animation code verbatim, pre-fill ALL content with mock data",
+      "category": "general",
+      "tags": [
+        "scroll-site-clone"
+      ]
+    },
+    {
       "name": "svg-handdrawn",
       "source": "./plugins/svg-handdrawn",
       "description": "Hand-drawn style SVG flowcharts and diagrams from plain-language descriptions",

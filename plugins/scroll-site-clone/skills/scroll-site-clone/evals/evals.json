@@ -1,0 +1,40 @@
+{
+  "skill_name": "scroll-site-clone",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "复刻 https://example-award-site.com 的整页滚动交互，新建一个 React+Vite 项目，特效要 100% 一致，文字图片全部用 mock 数据。",
+      "prompt_note": "zh mainline: whole-site replication with mandatory mock content",
+      "expected_output": "Creates .forensics/ with the dumped HTML+JS/CSS before writing clone code; ports animation JS and shaders verbatim (phase constants, lerp factors, dead branches kept); React components are thin shells with init/dispose effects; all text/images/videos/fonts mocked with zero network requests (Canvas textures, system font stacks, same DOM structure); delivers an acceptance report with a numeric-assertion table (computed style vs hand-derived values at milestone scroll positions, sampled after lerp convergence) plus per-section screenshots inspected against source-derived expectations; states descope items (e.g. mobile pipeline) explicitly.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Clone just the hero scroll sequence of https://example-award-site.com (the first ~600vh) into a new Vite project. Don't port the rest of the page.",
+      "prompt_note": "en scope-trim: single-section replication",
+      "expected_output": "Scope trimmed to the hero section only: blueprint table has one section row; later sections are neither ported nor stubbed in the clone; hero's internal phase boundaries and pipeline (ticker state machine, WebGL background, etc.) still ported verbatim; page ends after the hero without broken scroll math; verification covers the hero's phase milestones and the top/bottom of the cloned range.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我复刻的站滚动到关键词那一段时文字满屏乱跳，好几个词叠在同一点，左边还被裁掉了。帮我修。",
+      "prompt_note": "zh bug-fix regression: mis-ported section must be re-aligned to the dump, not patched",
+      "expected_output": "Goes back to the .forensics/ dump instead of tuning numbers: compares the original section's DOM/CSS (document-flow groups, margin-offset position classes, shared pos->alt group motion) against the clone's divergent structure (e.g. sticky screen + absolutely-positioned scattered words); rebuilds the structure to match the original verbatim with the ported animation JS unchanged; re-verifies at multiple scroll positions in both directions and reports root cause as original-vs-clone divergence, not as a magic-number fix.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Replicate https://example-corp-site.com — but their main bundle is obfuscated and has no sourcemaps. I still want the scroll effects.",
+      "prompt_note": "en degradation: illegible source must be surfaced, not faked",
+      "expected_output": "Attempts recovery first (prettier reformat, sourceMappingURL check, string/constant grep); on confirming illegibility, states the degradation explicitly BEFORE building: behavior-level approximation only, not 100%; clones observable behaviors (timings measured from the running site, stack identified from surviving string literals) and ships an explicit diff report listing what could and could not be verified; never labels the approximation as a faithful port.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "复刻 https://example-award-site.com，mock 内容我有要求：全部用中文文案，图片用品牌色 #1a4cff 到 #0a0f2b 的渐变，其他照旧。",
+      "prompt_note": "zh mock customization: configurable mock layer, structure untouched",
+      "expected_output": "Mock layer adapts to the requested style (Chinese copy with the original's casing/line-count/word-length shapes preserved so metric-sensitive reveals still match; textures generated in the requested brand gradient) while structure stays identical to the original: same DOM node counts, class names, and animated properties; animation code is not modified for the mock; verification still passes digit-exact numeric assertions and the report notes the mock configuration used.",
+      "files": []
+    }
+  ]
+}
